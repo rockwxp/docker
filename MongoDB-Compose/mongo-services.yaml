@@ -1,0 +1,23 @@
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+  mongodb-express:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    depends_on:
+      - "mongodb"
+# docker-compose -f git/docker/MongoDB-Compose/mongo-services.yaml up -d
+# docker-compose -f git/docker/MongoDB-Compose/mongo-services.yaml down
+
+# docker-compose -f git/docker/MongoDB-Compose/mongo-services.yaml stop
+# docker-compose -f git/docker/MongoDB-Compose/mongo-services.yaml start
